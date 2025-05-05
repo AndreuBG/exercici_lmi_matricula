@@ -66,15 +66,8 @@ function actualitzarModuls() {
     llistaModulsDiv.classList.add("llistaModuls");
     modulsFieldset.appendChild(llistaModulsDiv);
 
-    /* TO-DO
-    Recorre els diferents mòduls del cicle i curs seleccionat, i crea 
-    el corresponent label i checkbox, amb l'estructura:
-    <label><input type="checkbox" name="moduls" value="Programació"> Programació</label>
 
-    
-    */
-
-    const cursNum = curs === "primer" ? 1 : 2;
+    const cursNum = curs === "1r" ? 1 : 2;
     const llista = moduls[cicle][cursNum];
 
     llista.forEach(nomModul => {
@@ -116,6 +109,7 @@ form.addEventListener('submit', async (e) => {
         curs: formData.get('curs'),
         moduls: formData.getAll('moduls')
     };
+    console.log(dadesFormulari);
 
     try {
         const resposta = await fetch('/enviar-matricula', {

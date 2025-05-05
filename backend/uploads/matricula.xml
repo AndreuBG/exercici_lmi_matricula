@@ -1,0 +1,18 @@
+
+<matricula>
+    <dadesPersonals>
+        <nom>asdas</nom>
+        <cognoms>asd</cognoms>
+        <correu>asd@asd.com</correu>
+        <adreca>asd</adreca>
+        <telefon>123</telefon>
+    </dadesPersonals>
+    <estudis>
+        <cicle>DAW</cicle>
+        <curs>2n</curs>
+        <moduls>
+            <modul>Disseny d'interfícies web</modul>
+<modul>Projecte Intermodular II</modul>
+        </moduls>
+    </estudis>
+</matricula>
