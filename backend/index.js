@@ -56,17 +56,27 @@ app.post('/enviar-matricula', async (req, res) => {
 
 // Funció auxiliar per a generar l'XML
 function generarXML(dades) {
-    /*
-    TO-DO:
+    const moduls = Array.isArray(dades.moduls) ? dades.moduls : [dades.moduls];
 
-    Amb les dades rebudes, generem un XML, amb el format corresponent (veieu exemple)
-    */
     return `
 <matricula>
-  ...
-</matricula>
-    `;
+    <dadesPersonals>
+        <nom>${dades.nom}</nom>
+        <cognoms>${dades.cognoms}</cognoms>
+        <correu>${dades.correu}</correu>
+        <adreca>${dades.adreça}</adreca>
+        <telefon>${dades.telefon}</telefon>
+    </dadesPersonals>
+    <estudis>
+        <cicle>${dades.cicle}</cicle>
+        <curs>${dades.curs}</curs>
+        <moduls>
+            ${moduls.map(modul => `<modul>${modul}</modul>`).join('\n')}
+        </moduls>
+    </estudis>
+</matricula>`;
 }
+
 
 // Funció auxiliar per aplicar l'XSLT
 function transformarXSLT(xmlPath, foPath) {
@@ -80,7 +90,8 @@ function transformarXSLT(xmlPath, foPath) {
         La plantilla la guardareu en ./xslt/matricula.xsl
 
         */
-        const cmd = ``;
+        const xslPath = path.join(__dirname, 'xslt', 'matricula.xsl');
+        const cmd = `xsltproc -o "${foPath}" "${xslPath}" "${xmlPath}"`;
 
         exec(cmd, (error, stdout, stderr) => {
             if (error) {

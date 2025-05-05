@@ -69,11 +69,29 @@ function actualitzarModuls() {
     /* TO-DO
     Recorre els diferents mòduls del cicle i curs seleccionat, i crea 
     el corresponent label i checkbox, amb l'estructura:
-
     <label><input type="checkbox" name="moduls" value="Programació"> Programació</label>
 
     
     */
+
+    const cursNum = curs === "primer" ? 1 : 2;
+    const llista = moduls[cicle][cursNum];
+
+    llista.forEach(nomModul => {
+        const label = document.createElement("label");
+        const checkbox = document.createElement("input");
+
+        checkbox.type = "checkbox";
+        checkbox.name = "moduls";
+        checkbox.value = nomModul;
+
+        label.appendChild(checkbox);
+        label.append(" " + nomModul);
+
+        llistaModulsDiv.appendChild(label);
+        llistaModulsDiv.appendChild(document.createElement("br"));
+    });
+
 
 }
 
@@ -84,27 +102,46 @@ cursRadios.forEach(radio => radio.addEventListener('change', actualitzarModuls))
 
 // Enviar el formulari
 form.addEventListener('submit', async (e) => {
-    // Inhibim l'enviament automàtic del formulari
     e.preventDefault();
-
-
-    // Agafem les dades del formulari en formData, com a parells clau/valir
-    // Podeu consultar la documentació de la finterfície FormData en: 
-    // https://developer.mozilla.org/en-US/docs/Web/API/FormData
-    // Per agafar les propietats des d'aquesta interfície fem ús de form.get('nom_del_camp_del_formulari')
 
     const formData = new FormData(form);
 
-    /* TO-DO
-    
-    Prepara un objece JSON amb la informació guardada al formulari
+    const dadesFormulari = {
+        nom: formData.get('nom'),
+        cognoms: formData.get('cognoms'),
+        correu: formData.get('correu'),
+        adreça: formData.get('adreça'),
+        telefon: formData.get('telefon'),
+        cicle: formData.get('cicle'),
+        curs: formData.get('curs'),
+        moduls: formData.getAll('moduls')
+    };
 
-    */
+    try {
+        const resposta = await fetch('/enviar-matricula', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dadesFormulari)
+        });
 
-    // Preparem l'objecte amb les dades per enviar al servidor
-    // I l'enviem, fent ús d'una petició POST
-    // Recordeu convertir el JSON a un string per enviar-lo al servidor
-    // Una vegada rebuda la resposta, creeu una URL amb ell, un enllaç
-    // i forceu el clic en ell per descarregar el document.
+        if (!resposta.ok) {
+            throw new Error("Error rebent el PDF");
+        }
 
+        const blob = await resposta.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'matricula.pdf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+    } catch (error) {
+        console.error("Error en la descàrrega del PDF:", error);
+        alert("Hi ha hagut un error en generar o descarregar el PDF.");
+    }
 });
