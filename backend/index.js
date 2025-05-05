@@ -31,22 +31,27 @@ app.post('/enviar-matricula', async (req, res) => {
     try {
         // 1. Recollir les dades del formulari
         const dadesMatricula = req.body;
+        console.log("1");
 
         // 2. Generar XML amb les dades
         const xmlPath = path.join(__dirname, 'uploads', 'matricula.xml');
         const xmlContent = generarXML(dadesMatricula);
         fs.writeFileSync(xmlPath, xmlContent);
+        console.log("2");
 
         // 3. Aplicar transformació XSLT → XSL-FO
         const foPath = path.join(__dirname, 'uploads', 'matricula.fo');
         await transformarXSLT(xmlPath, foPath);
+        console.log("3");
 
         // 4. Generar PDF a partir del XSL-FO
         const pdfPath = path.join(__dirname, 'uploads', 'matricula.pdf');
         await generarPDF(foPath, pdfPath);
+        console.log("4");
 
         // 5. Enviar PDF com a resposta
         res.download(pdfPath, 'matricula.pdf');
+        console.log("5");
 
     } catch (error) {
         console.error(error);
