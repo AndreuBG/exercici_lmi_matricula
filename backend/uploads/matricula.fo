@@ -27,7 +27,7 @@
               <fo:block>Cognoms:</fo:block>
             </fo:table-cell>
             <fo:table-cell border="solid 1px black" padding="5pt">
-              <fo:block>asd</fo:block>
+              <fo:block>asds</fo:block>
             </fo:table-cell>
           </fo:table-row>
           <fo:table-row>
@@ -35,7 +35,7 @@
               <fo:block>Correu electrònic:</fo:block>
             </fo:table-cell>
             <fo:table-cell border="solid 1px black" padding="5pt">
-              <fo:block>asd@asd.com</fo:block>
+              <fo:block>asd@asd.coms</fo:block>
             </fo:table-cell>
           </fo:table-row>
           <fo:table-row>
@@ -43,7 +43,7 @@
               <fo:block>Adreça:</fo:block>
             </fo:table-cell>
             <fo:table-cell border="solid 1px black" padding="5pt">
-              <fo:block>asd</fo:block>
+              <fo:block>asdsss</fo:block>
             </fo:table-cell>
           </fo:table-row>
           <fo:table-row>
@@ -70,15 +70,7 @@
             <fo:block>•</fo:block>
           </fo:list-item-label>
           <fo:list-item-body start-indent="body-start()">
-            <fo:block>Disseny d'interfícies web</fo:block>
-          </fo:list-item-body>
-        </fo:list-item>
-        <fo:list-item>
-          <fo:list-item-label end-indent="label-end()">
-            <fo:block>•</fo:block>
-          </fo:list-item-label>
-          <fo:list-item-body start-indent="body-start()">
-            <fo:block>Projecte Intermodular II</fo:block>
+            <fo:block>Desenvolupament Web en entorn client</fo:block>
           </fo:list-item-body>
         </fo:list-item>
       </fo:list-block>

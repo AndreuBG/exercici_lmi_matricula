@@ -60,20 +60,18 @@ function generarXML(dades) {
 
     return `
 <matricula>
-    <dadesPersonals>
+    <alumne>
         <nom>${dades.nom}</nom>
         <cognoms>${dades.cognoms}</cognoms>
         <correu>${dades.correu}</correu>
         <adreca>${dades.adreça}</adreca>
         <telefon>${dades.telefon}</telefon>
-    </dadesPersonals>
-    <estudis>
-        <cicle>${dades.cicle}</cicle>
-        <curs>${dades.curs}</curs>
-        <moduls>
-            ${moduls.map(modul => `<modul>${modul}</modul>`).join('\n')}
-        </moduls>
-    </estudis>
+    </alumne>
+    <cicle>${dades.cicle}</cicle>
+    <curs>${dades.curs}</curs>
+    <moduls>
+        ${moduls.map(modul => `<modul>${modul}</modul>`).join('\n')}
+    </moduls>
 </matricula>`;
 }
 

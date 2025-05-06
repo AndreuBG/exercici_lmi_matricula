@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="matricula">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="alumne">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="nom" type="xs:string"></xs:element>
+                            <xs:element name="cognoms" type="xs:string"></xs:element>
+                            <xs:element name="correu" type="xs:string"></xs:element>
+                            <xs:element name="adreca" type="xs:string"></xs:element>
+                            <xs:element name="telefon" type="xs:int"></xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="cicle" type="xs:string"></xs:element>
+                <xs:element name="curs" type="xs:string"></xs:element>
+                <xs:element name="moduls">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="modul" type="xs:string" maxOccurs="unbounded"></xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
